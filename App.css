@@ -1,0 +1,501 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:root {
+  --info-yellow: #ffde00;
+  --white-text: #f9f9f9;
+  --black-text: #4c4c4c;
+  --action-green: #96cf10;
+
+  --card-orange: #ff9933;
+  --card-orangeBorder: #FFC082;
+  --card-blue: #33ccff;
+  --card-blueBorder: #8CE2FE;
+  --card-tan: #fffdd0;
+  --card-tan-flipped: #dfdda0;
+  --card-tanBorder: #FFFEE9;
+  --card-black: #333;
+  --card-blackBorder: #464646;
+
+  --burntOrange: #a13e1e;
+  --headerOrange: #F9A58A;
+  --steelBlue: #0096af;
+  --headerBlue: #77E3F2;
+}
+
+/* ************************************************
+CONTAINERS
+************************************************ */
+
+.app-wrapper {
+  background: rgb(61,90,128);
+  background: linear-gradient(45deg, 
+    rgba(51,75,106,1) 0%, 
+    rgba(86,155,190,1) 100%);
+  height: 100vh;
+}
+
+.create-user-bkgr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.create-user-wrapper {
+  background-color: #fdfdfd;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.create-inputs-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.room-wrapper {
+  display: grid;
+  grid-template-columns: repeat(9, 11.1%);
+  grid-template-rows: 7.6% repeat(11, 8.4%);
+  /* grid-template-columns: 15% 14% 14% 14% 14% 14% 15%; */
+  /* grid-template-rows: 5% 8% 14.5% 14.5% 14.5% 14.5% 14.5% 14.5%; */
+  height: 100vh;
+  width: 100vw;
+}
+
+.player-room-wrapper {
+  display: flex;
+  
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.info-elements-wrappers {
+  background-color: var(--info-yellow);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  height: 50%;
+  padding: 8px;
+
+  display: flex;
+}
+
+.num-player-wrapper {
+  margin: 5px 0 0 10px;
+  width: 50%;
+  max-width: 120px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-num-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-code-wrapper {
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+  margin: 5px 0 0 10px;
+  padding: 25px 5px;
+  text-align: center;
+}
+
+.username-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 5px auto 0;
+  width: 75%;
+
+  grid-column: 8/10;
+  grid-row: 1/2;
+}
+
+.start-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+
+  grid-column: 3/8;
+  grid-row: 1/2;
+}
+
+.current-objective-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background-color: var(--white-text);
+  border: none;
+  border-radius: 5px;
+  height: 60%;
+  margin: 15px auto 0;
+  padding: 0 20px;
+
+  grid-column: 2/9;
+  grid-row: 2/3;
+}
+
+.gameboard-wrapper {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  grid-template-rows: repeat(5, 20%);
+
+  grid-column: 1/10;
+  grid-row: 3/8;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--white-text);
+  border: 5px solid var(--white-text);
+  border-radius: 5px;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
+  height: 95%;
+  margin: 2.5%;
+  width: 95%;
+}
+
+.op-card {
+  background-color: var(--card-tan);
+  border-color: var(--card-tanBorder);
+  position: relative;
+}
+
+.op-orange {
+  background-color: var(--card-orange);
+  border-color: var(--card-orangeBorder);
+}
+
+.op-blue {
+  background-color: var(--card-blue);
+  border-color: var(--card-blueBorder);
+}
+
+.op-empty {
+  background-color: var(--card-tan-flipped);
+  border-color: var(--card-tanBorder);
+}
+
+.op-kill {
+  background-color: var(--card-black);
+  border-color: var(--card-blackBorder);
+}
+
+.orange {
+  background-color: var(--card-orange);
+  border: 5px solid var(--card-orangeBorder);
+}
+
+.blue {
+  background-color: var(--card-blue);
+  border: 5px solid var(--card-blueBorder);
+}
+
+.empty {
+  background-color: var(--card-tan-flipped);
+  border: 5px solid var(--card-tanBorder);
+}
+
+.kill {
+  background-color: var(--card-black);
+  border: 5px solid var(--card-blackBorder);
+}
+
+.team-wrapper {
+  padding: 10px;
+  grid-row: 9/13;
+}
+
+.gamelog-wrapper {
+  background-color: var(--white-text);
+
+  grid-column: 4/7;
+  grid-row: 9/13;
+}
+
+.clue-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  grid-column: 1/10;
+  grid-row: 8/9;
+}
+
+.clue-num-display {
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 5px;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - (16*11)); /* the subtracted num is roughly the width of each button */
+  z-index: 2;
+}
+
+/* ************************************************
+INPUT
+************************************************ */
+
+.create-txt-inputs {
+  border: 1px solid transparent;
+  /* border: 1px solid #cdcdcd; */
+  border-radius: 8px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+  color: #1bb6cf;
+  font-size: 18px;
+  font-weight: 600;
+  outline: none;
+  padding: 12px;
+}
+
+.create-txt-inputs:last-child {
+  margin: 20px 0 0;
+}
+
+.create-txt-inputs:focus,
+.create-txt-inputs:active,
+.create-txt-inputs:hover {
+  border: 1px solid #1bb6cf;
+}
+
+.create-btn {
+  background-color: #1bb6cf;
+  border: none;
+  border-radius: 8px;
+  color: #fdfdfd;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 20px 5px 0;
+  padding: 10px 15px;
+  transition: all 500ms ease;
+}
+
+.create-btn:nth-child(2) {
+  background-color: #da713b;
+}
+
+.create-btn:hover {
+  box-shadow: 0 0 3px 2px rgba(0,0,0,0.1);
+  filter: brightness(105%);
+}
+
+.start-btn {
+  background-color: var(--action-green); 
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
+  color: var(--white-text);
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 10px 15px;
+}
+
+.flip-btn {
+  background-color: var(--card-black);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 40%;
+  position: absolute;
+  right: -3px;
+  top: -3px;
+  width: 20%;
+}
+
+.spy-input-text,
+.clue-enter-btn {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.4);
+  margin: 0 10px 0 0;
+  padding: 8px 12px;
+}
+
+.clue-enter-btn {
+  background-color: #b6ff30;
+  color: var(--black-text);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0 10px;
+}
+
+.choose-num-btn {
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.num-btn {
+  border: 1px solid #666;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 0 2px;
+  padding: 3px 8px;
+}
+
+
+/* ************************************************
+TEXT
+************************************************ */
+
+.create-header {
+  color: #da713b;
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+.num-player-txt, 
+.username-txt {
+  font-size: clamp(0.8rem, calc(1vw + 1vh + 1vmin), 1.025rem);
+  font-weight: 600;
+}
+
+.curr-obj-txt {
+  color: var(--black-text);
+  font-weight: 600;
+}
+
+.card-txt {
+  font-size: clamp(0.8rem, calc(1vw + 1vw + 1vmin), 1.5rem);
+  font-weight: 700;
+}
+
+.team-txt {
+  color: var(--white-text);
+  font-weight: 600;
+  margin: 0 0 5px;
+}
+
+
+/* ************************************************
+MEDIA
+************************************************ */
+
+.players-icon {
+  fill: #333;
+  height: 75%;
+  /* margin: 2px 0 0 -10px; */
+  stroke: #333;
+  width: 45%;
+  max-width: 40px;
+}
+
+.smiley-icon {
+  fill: #333;
+  height: 30px;
+  stroke: var(--info-yellow);
+  width: 45%;
+}
+
+.flip-icon {
+  height: 90%;
+  position: absolute;
+  right: 20%;
+  top: 0;
+  stroke: var(--white-text);
+  width: 90%;
+}
