@@ -13,9 +13,3 @@ function Card({ word, color, flipped }) {
 export default Card;
 
 
-
-// things to do
-// display number of words left for each team
-// determine winner
-// make pretty/responsive
-// gamelog

@@ -28,6 +28,9 @@ function Room({ roomCode, userInfo }) {
     
     let [gamelogChange, setGamelogChange] = useState();
 
+    let [gameOver, setGameOver] = useState(false);
+    let [winnerText, setWinnerText] = useState("");
+
     //// VARIABLES THAT DEPEND ON CONDITIONS \\\\
 
     // Display the start button is the user is the host and the game is not started
@@ -72,6 +75,12 @@ function Room({ roomCode, userInfo }) {
         roomInfo.clueGiven !== false &&
         <EndTurnBtn roomInfo={roomInfo} />
 
+    let winnerDisplay = 
+        gameOver &&
+        (<div className="winner-wrapper">
+            <p className="winner-txt">{winnerText}</p>
+        </div>)
+
 
     useEffect(() => {
         // This is to deal with page reloads when it comes to that...
@@ -99,6 +108,14 @@ function Room({ roomCode, userInfo }) {
             if (roomInfo.currClue !== undefined) {
                 setCurrObjective(roomInfo.currClue);
                 setAltObjective(roomInfo.altObjective);
+            }
+
+            if (roomInfo.orange && roomInfo.blue) {
+                if (roomInfo.orange.wordsLeft === 0) {
+                    winner("Orange");
+                } else if (roomInfo.blue.wordsLeft === 0) {
+                    winner("Blue");
+                }
             }
         }
 
@@ -132,7 +149,21 @@ function Room({ roomCode, userInfo }) {
         }
     }
 
-    console.log(gamelogChange);
+    
+    function winner(winner) {
+        let winTxt = `${winner} team wins!`;
+
+        setGameOver(true);
+        setWinnerText(winTxt);
+        setAltObjective(winTxt);
+        setCurrObjective(winTxt);
+
+        db.ref(`rooms/${roomCode}`).update({
+            "currentTurn": "game over"
+        });
+    }
+
+
     return (
         roomInfo !== undefined  
             ?   (<div className="room-wrapper">
@@ -227,9 +258,18 @@ function Room({ roomCode, userInfo }) {
                         gameStarted={roomInfo.gameStarted}
                         isOnOtherTeam={blueTeam}
                     />
+
+                    {winnerDisplay}
+
                 </div>)
             :   <></>
     );
 }
 
 export default Room;
+
+
+
+// things to do
+// make pretty/responsive
+// make it replayable?
